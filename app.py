@@ -29,7 +29,7 @@ REMIND_INTERVAL_SEC = 30 * 60      # 30分（秒）
 POPUP_AUTO_CLOSE_SEC = 25          # 通知自動消去（秒）
 MAX_DRINK_COUNT = 8                # 満水とみなす回数
 WINDOW_WIDTH = 300
-WINDOW_HEIGHT = 400
+WINDOW_HEIGHT = 440
 ANIMATION_DURATION_MS = 500        # 水位アニメーション（ms）
 
 # カラースキーム（マリンテイスト）
