@@ -1,0 +1,4 @@
+# 水飲みリマインドアプリ 依存パッケージ
+# pip install -r requirements.txt でインストール
+
+PyQt6>=6.4.0
