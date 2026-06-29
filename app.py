@@ -28,6 +28,7 @@ class MainWindow(MainWindowUI):
     def __init__(self):
         self.drink_count: int = 0
         self.ignore_count: int = 0   # 連続無視回数
+        self.snooze_count: int = 0   # 連続スヌーズ回数
         self.popup: "PopupWindow | None" = None
 
         # 設定をファイルから読み込む（起動時自動読み込み）
@@ -64,6 +65,7 @@ class MainWindow(MainWindowUI):
         )
         if dlg.exec() == QDialog.DialogCode.Accepted:
             settings = dlg.get_settings()
+            old_interval = self.remind_interval
             self.remind_interval = settings["interval"]
             new_theme = settings["theme"]
 
@@ -72,9 +74,10 @@ class MainWindow(MainWindowUI):
                 self.theme.set_theme(new_theme)
                 self.apply_theme_to_ui()
 
-            # タイマー間隔を更新（残り時間も新しい間隔にリセット）
-            self.remaining_time = self.remind_interval * 60
-            self.time_label.setText(self._format_time(self.remaining_time))
+            # 通知間隔が変わった場合のみ残り時間をリセット
+            if settings["interval"] != old_interval:
+                self.remaining_time = self.remind_interval * 60
+                self.time_label.setText(self._format_time(self.remaining_time))
             # 設定をファイルに保存
             save_settings(self.remind_interval, self.theme.current_name)
 
@@ -99,7 +102,8 @@ class MainWindow(MainWindowUI):
     # ----------------------------------------------------------
     def _on_drink(self):
         self.drink_count += 1
-        self.ignore_count = 0  # 飲んだらカウントリセット
+        self.ignore_count = 0   # 飲んだらカウントリセット
+        self.snooze_count = 0   # スヌーズカウントもリセット
         self.remaining_time = self.remind_interval * 60
         self.count_label.setText(f"{self.drink_count} 回")
         self.time_label.setText(self._format_time(self.remaining_time))
@@ -114,18 +118,42 @@ class MainWindow(MainWindowUI):
     def _show_popup(self):
         if self.popup and self.popup.isVisible():
             self.popup.close()
-        self.popup = PopupWindow(self, ignore_count=self.ignore_count, theme=self.theme)
+        self.popup = PopupWindow(
+            self,
+            ignore_count=self.ignore_count,
+            snooze_count=self.snooze_count,
+            theme=self.theme,
+        )
         self.popup.drink_signal.connect(self._on_drink)
         self.popup.snooze_signal.connect(self._on_snooze)
+        self.popup.close_signal.connect(self._on_close_popup)
         self.popup.ignored_signal.connect(self._on_ignored)
         self.popup.show_at_bottom_right()
 
     # ----------------------------------------------------------
-    # あと5分（スヌーズ）処理
+    # あとで（スヌーズ）処理
     # ----------------------------------------------------------
     def _on_snooze(self):
-        """「あと5分」ボタン押下時：タイマーを5分にリセット"""
+        """「あとで」ボタン押下時：snooze_countを増やしてタイマーを5分にリセット"""
+        self.snooze_count += 1
         self.remaining_time = 5 * 60
+        self.time_label.setText(self._format_time(self.remaining_time))
+
+    # ----------------------------------------------------------
+    # 閉じるボタン処理（最終警告時）
+    # ----------------------------------------------------------
+    def _on_close_popup(self):
+        """「閉じる」ボタン押下時：snooze_countを増やし、水位ペナルティを適用してタイマーをリセット"""
+        self.snooze_count += 1
+
+        # 水位ペナルティ：min(snooze_count * 0.05, 0.2) だけ水位を減少
+        penalty = min(self.snooze_count * 0.05, 0.2)
+        current_level = min(self.drink_count / MAX_DRINK_COUNT, 1.0)
+        new_level = max(current_level - penalty, 0.0)
+        self.cup_widget.set_level(new_level, animate=True)
+
+        # タイマーを通常の設定時間に戻す
+        self.remaining_time = self.remind_interval * 60
         self.time_label.setText(self._format_time(self.remaining_time))
 
     # ----------------------------------------------------------
