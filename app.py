@@ -31,6 +31,8 @@ class MainWindow(MainWindowUI):
         self.snooze_count: int = 0   # 連続スヌーズ回数
         self.popup: "PopupWindow | None" = None
 
+        self.current_level: float = 0.0
+
         # 設定をファイルから読み込む（起動時自動読み込み）
         saved = load_settings()
         self.remind_interval: int = saved["interval"]
@@ -107,8 +109,12 @@ class MainWindow(MainWindowUI):
         self.remaining_time = self.remind_interval * 60
         self.count_label.setText(f"{self.drink_count} 回")
         self.time_label.setText(self._format_time(self.remaining_time))
-        level = min(self.drink_count / MAX_DRINK_COUNT, 1.0)
-        self.cup_widget.set_level(level, animate=True)
+        
+        step = 1.0 / MAX_DRINK_COUNT
+        self.current_level = min(self.current_level + step, 1.0)
+
+        self.cup_widget.set_level(self.current_level, animate=True)
+
         if self.popup and self.popup.isVisible():
             self.popup.close()
 
@@ -148,9 +154,11 @@ class MainWindow(MainWindowUI):
 
         # 水位ペナルティ：min(snooze_count * 0.05, 0.2) だけ水位を減少
         penalty = min(self.snooze_count * 0.05, 0.2)
-        current_level = min(self.drink_count / MAX_DRINK_COUNT, 1.0)
-        new_level = max(current_level - penalty, 0.0)
-        self.cup_widget.set_level(new_level, animate=True)
+        
+        self.current_level = max(self.current_level - penalty, 0.0)
+
+        self.cup_widget.set_level(self.current_level, animate=True)
+
 
         # タイマーを通常の設定時間に戻す
         self.remaining_time = self.remind_interval * 60

@@ -45,7 +45,7 @@ IGNORED_MESSAGES = [
     ],
     # ignore_count >= 3
     [
-        "何度もお知らせしてごめんなさい 🙏 でも水は大切です",
+        "水分補給は大切です",
         "お体のために、ほんの一口だけでも飲んでみてください",
         "長時間水を飲んでいないかもしれません。ご自愛ください 💙",
     ],
@@ -56,49 +56,49 @@ IGNORED_MESSAGES = [
 # カラーテーマ定義
 # ============================================================
 THEMES = {
-    "水色（デフォルト）": {
+    "水色(ウォーター)": {
         "bg": "#EAF6FB", "bg2": "#D6EEF8",
         "primary": "#5BB8D4", "primary_dark": "#2A7FA8",
         "accent": "#3A9EC2", "water_top": "#A8DDEF", "water_bot": "#3A9EC2",
         "cup_outline": "#88CCEE", "text": "#1A4A6B", "text_light": "#4A8AAA",
         "btn_bg": "#5BB8D4", "btn_hover": "#3A9EC2", "shadow": "#B0D8EC",
     },
-    "ピンク": {
+    "ピンク(ストロベリーフィズ)": {
         "bg": "#FFF0F5", "bg2": "#FFD6E7",
         "primary": "#E87DA0", "primary_dark": "#B5476A",
         "accent": "#D45C85", "water_top": "#F7B8CF", "water_bot": "#D45C85",
         "cup_outline": "#F0A0C0", "text": "#6B1A3A", "text_light": "#AA4A70",
         "btn_bg": "#E87DA0", "btn_hover": "#D45C85", "shadow": "#F0C0D5",
     },
-    "黄色": {
+    "黄色(バナナオレ)": {
         "bg": "#FFFDE7", "bg2": "#FFF9C4",
         "primary": "#F9C846", "primary_dark": "#C49A00",
         "accent": "#F0B800", "water_top": "#FFE57F", "water_bot": "#F0B800",
         "cup_outline": "#FFD740", "text": "#5C4A00", "text_light": "#9A7A00",
         "btn_bg": "#F9C846", "btn_hover": "#F0B800", "shadow": "#FFE082",
     },
-    "緑": {
+    "緑(抹茶ラテ)": {
         "bg": "#F1F8E9", "bg2": "#DCEDC8",
         "primary": "#66BB6A", "primary_dark": "#2E7D32",
         "accent": "#43A047", "water_top": "#A5D6A7", "water_bot": "#43A047",
         "cup_outline": "#81C784", "text": "#1B5E20", "text_light": "#4A8A50",
         "btn_bg": "#66BB6A", "btn_hover": "#43A047", "shadow": "#C8E6C9",
     },
-    "紫": {
+    "紫(グレープソーダ)": {
         "bg": "#F3E5F5", "bg2": "#E1BEE7",
         "primary": "#AB47BC", "primary_dark": "#6A1B9A",
         "accent": "#8E24AA", "water_top": "#CE93D8", "water_bot": "#8E24AA",
         "cup_outline": "#BA68C8", "text": "#4A1A6B", "text_light": "#7A4A9A",
         "btn_bg": "#AB47BC", "btn_hover": "#8E24AA", "shadow": "#D1B0DC",
     },
-    "白グレー系": {
+    "白(ミルク)": {
         "bg": "#FAFAFA", "bg2": "#F0F0F0",
         "primary": "#90A4AE", "primary_dark": "#455A64",
         "accent": "#607D8B", "water_top": "#CFD8DC", "water_bot": "#607D8B",
         "cup_outline": "#B0BEC5", "text": "#263238", "text_light": "#607D8B",
         "btn_bg": "#90A4AE", "btn_hover": "#607D8B", "shadow": "#CFD8DC",
     },
-    "黒基調（モダン）": {
+    "黒(ブラックコーヒー)": {
         "bg": "#1E1E2E", "bg2": "#181825",
         "primary": "#89B4FA", "primary_dark": "#74C7EC",
         "accent": "#89DCEB", "water_top": "#89B4FA", "water_bot": "#74C7EC",
@@ -107,7 +107,7 @@ THEMES = {
     },
 }
 
-DEFAULT_THEME_NAME = "水色（デフォルト）"
+DEFAULT_THEME_NAME = "水色(ウォーター)"
 
 # 設定ファイルパス
 SETTINGS_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "settings.json")

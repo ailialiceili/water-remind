@@ -92,7 +92,7 @@ class PopupWindow(QWidget):
         msg_label.setStyleSheet(f"""
             color: {theme.get_color("primary_dark")};
             font-family: 'Yu Gothic UI';
-            font-size: 14px;
+            font-size: 17px;
             font-weight: bold;
         """)
         layout.addWidget(msg_label)
@@ -109,7 +109,8 @@ class PopupWindow(QWidget):
         sub_label.setStyleSheet(f"""
             color: {theme.get_color("text")};
             font-family: 'Yu Gothic UI';
-            font-size: 10px;
+            font-size: 20px;
+            line-height: 1.5;
         """)
         layout.addWidget(sub_label)
 
@@ -119,7 +120,7 @@ class PopupWindow(QWidget):
             penalty_label.setStyleSheet(f"""
                 color: {theme.get_color("accent")};
                 font-family: 'Yu Gothic UI';
-                font-size: 9px;
+                font-size:20px;
             """)
             layout.addWidget(penalty_label)
 
@@ -138,7 +139,7 @@ class PopupWindow(QWidget):
                 background: {theme.get_color("btn_bg")};
                 color: {theme.get_color("btn_fg")};
                 font-family: 'Yu Gothic UI';
-                font-size: 13px;
+                font-size: 16px;
                 font-weight: bold;
                 border: none;
                 border-radius: 18px;
@@ -152,7 +153,7 @@ class PopupWindow(QWidget):
             }}
         """)
         drink_btn.clicked.connect(self._on_drink)
-        btn_row.addWidget(drink_btn, stretch=3)
+        btn_row.addWidget(drink_btn, stretch=1)
 
         if self._snooze_count >= 2:
             # 最終警告状態：「閉じる」ボタンを表示
@@ -164,7 +165,7 @@ class PopupWindow(QWidget):
                     background: transparent;
                     color: {theme.get_color("accent")};
                     font-family: 'Yu Gothic UI';
-                    font-size: 10px;
+                    font-size: 16px;
                     border: 1px solid {theme.get_color("accent")};
                     border-radius: 14px;
                     padding: 0 10px;
@@ -179,33 +180,32 @@ class PopupWindow(QWidget):
                 }}
             """)
             close_btn.clicked.connect(self._on_close_btn)
-            btn_row.addWidget(close_btn, stretch=2)
+            btn_row.addWidget(close_btn, stretch=1)
         else:
             # 通常状態（0〜1回目）：「あとで」ボタンを表示
             snooze_btn = QPushButton("あとで")
-            snooze_btn.setFixedHeight(28)
+            snooze_btn.setFixedHeight(36)
             snooze_btn.setCursor(Qt.CursorShape.PointingHandCursor)
             snooze_btn.setStyleSheet(f"""
                 QPushButton {{
                     background: transparent;
-                    color: {theme.get_color("text_light")};
+                    color: {theme.get_color("primary")};
                     font-family: 'Yu Gothic UI';
-                    font-size: 10px;
-                    border: 1px solid {theme.get_color("shadow")};
-                    border-radius: 14px;
-                    padding: 0 10px;
+                    font-size: 16px;
+                    font-weight: bold;
+                    border: 2px solid {theme.get_color("primary")};
+                    border-radius: 18px;
+                    padding: 0 20px;
                 }}
                 QPushButton:hover {{
                     background: {theme.get_color("bg")};
-                    color: {theme.get_color("text")};
-                    border-color: {theme.get_color("primary")};
                 }}
                 QPushButton:pressed {{
                     background: {theme.get_color("bg2")};
                 }}
             """)
             snooze_btn.clicked.connect(self._on_snooze)
-            btn_row.addWidget(snooze_btn, stretch=2)
+            btn_row.addWidget(snooze_btn, stretch=1)
 
         layout.addLayout(btn_row)
 
@@ -233,14 +233,6 @@ class PopupWindow(QWidget):
         painter.setBrush(QBrush(QColor(theme.get_color("white"))))
         painter.setPen(Qt.PenStyle.NoPen)
         painter.drawRoundedRect(4, 4, w - 8, h - 8, 14, 14)
-
-        # 上部アクセントライン（無視回数に応じて太さ変化）
-        accent_grad = QLinearGradient(0, 0, w, 0)
-        accent_grad.setColorAt(0.0, QColor(theme.get_color("primary")))
-        accent_grad.setColorAt(1.0, QColor(theme.get_color("accent")))
-        painter.setBrush(QBrush(accent_grad))
-        accent_h = 5 + min(self._ignore_count * 2, 6)  # 無視回数で太くなる（最大11px）
-        painter.drawRoundedRect(4, 4, w - 8, accent_h, 3, 3)
 
         # 枠線（グロー中はアニメーション、通常は無視回数に応じて強調）
         if self._glow_active:

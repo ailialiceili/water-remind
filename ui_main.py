@@ -110,6 +110,11 @@ class SettingsDialog(QDialog):
             QDialogButtonBox.StandardButton.Ok
             | QDialogButtonBox.StandardButton.Cancel
         )
+
+        
+        btn_box.button(QDialogButtonBox.StandardButton.Ok).setText("OK")
+        btn_box.button(QDialogButtonBox.StandardButton.Cancel).setText("キャンセル")
+
         btn_box.setStyleSheet(f"""
             QPushButton {{
                 background: {theme.get_color("btn_bg")};
@@ -228,43 +233,57 @@ class MainWindowUI(QWidget):
         top_row = QHBoxLayout()
 
         self.gear_btn = QPushButton("⚙")
-        self.gear_btn.setFixedSize(28, 28)
+        self.gear_btn.setFixedSize(32, 32)
         self.gear_btn.setCursor(Qt.CursorShape.PointingHandCursor)
-        self.gear_btn.setToolTip("設定")
+        
         self.gear_btn.setStyleSheet(f"""
             QPushButton {{
                 background: transparent;
                 color: {theme.get_color("text_light")};
-                font-size: 16px;
+                font-size: 18px;
                 border: none;
-                border-radius: 14px;
+                border-radius: 16px;
             }}
             QPushButton:hover {{
                 background: {theme.get_color("shadow")};
                 color: {theme.get_color("text")};
             }}
         """)
+
         top_row.addWidget(self.gear_btn)
         top_row.addStretch()
 
         self.close_btn = QPushButton("✕")
-        self.close_btn.setFixedSize(28, 28)
+        self.close_btn.setFixedSize(32, 32)
         self.close_btn.setCursor(Qt.CursorShape.PointingHandCursor)
+        
         self.close_btn.setStyleSheet(f"""
             QPushButton {{
                 background: transparent;
                 color: {theme.get_color("text_light")};
-                font-size: 14px;
+                font-size: 16px;
+                font-weight: bold;
                 border: none;
-                border-radius: 14px;
+                border-radius: 16px;
             }}
             QPushButton:hover {{
                 background: {theme.get_color("shadow")};
                 color: {theme.get_color("text")};
             }}
         """)
+
         top_row.addWidget(self.close_btn)
-        root_layout.addLayout(top_row)
+        
+        top_row.setContentsMargins(0, 0, 0, 0)
+        top_row.setSpacing(0)
+
+        top_container = QWidget()
+        top_container.setLayout(top_row)
+        top_container.setFixedHeight(36)
+        top_container.setStyleSheet("background: transparent;")
+
+        root_layout.addWidget(top_container)
+
 
         # ---- 飲水回数 ----
         count_frame = QVBoxLayout()
