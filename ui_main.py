@@ -289,7 +289,7 @@ class MainWindowUI(QWidget):
 
         # ---- 飲水回数 ----
         count_frame = QVBoxLayout()
-        count_frame.setSpacing(2)
+        count_frame.setSpacing(4)
 
         self.label_title = QLabel("本日の飲水回数")
         self.label_title.setAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -298,7 +298,7 @@ class MainWindowUI(QWidget):
         self.label_title.setStyleSheet(f"""
             color: {title_color};
             font-family: 'Yu Gothic UI';
-            font-size: 11px;
+            font-size: 13px;
             letter-spacing: 1px;
         """)
         count_frame.addWidget(self.label_title)
@@ -308,13 +308,13 @@ class MainWindowUI(QWidget):
         self.count_label.setStyleSheet(f"""
             color: {theme.get_color("primary_dark")};
             font-family: 'Yu Gothic UI';
-            font-size: 32px;
+            font-size: 42px;
             font-weight: bold;
         """)
         count_frame.addWidget(self.count_label)
         root_layout.addLayout(count_frame)
 
-        root_layout.addSpacing(8)
+        root_layout.addSpacing(12)
 
         # ---- コップビジュアル ----
         cup_row = QHBoxLayout()
@@ -328,7 +328,7 @@ class MainWindowUI(QWidget):
 
         # ---- 残り時間 ----
         time_frame = QVBoxLayout()
-        time_frame.setSpacing(2)
+        time_frame.setSpacing(4)
 
         self.label_time_title = QLabel("次の通知まで")
         self.label_time_title.setAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -337,7 +337,7 @@ class MainWindowUI(QWidget):
         self.label_time_title.setStyleSheet(f"""
             color: {time_title_color};
             font-family: 'Yu Gothic UI';
-            font-size: 11px;
+            font-size: 13px;
             letter-spacing: 1px;
         """)
         time_frame.addWidget(self.label_time_title)
@@ -347,13 +347,13 @@ class MainWindowUI(QWidget):
         self.time_label.setStyleSheet(f"""
             color: {theme.get_color("primary")};
             font-family: 'Yu Gothic UI';
-            font-size: 26px;
+            font-size: 36px;
             font-weight: bold;
         """)
         time_frame.addWidget(self.time_label)
         root_layout.addLayout(time_frame)
 
-        root_layout.addSpacing(12)
+        root_layout.addSpacing(16)
 
         # ---- 手動「飲んだ」ボタン ----
         self.drink_btn = QPushButton("💧 飲んだ")
@@ -423,13 +423,13 @@ class MainWindowUI(QWidget):
         self.label_title.setStyleSheet(f"""
             color: {title_color};
             font-family: 'Yu Gothic UI';
-            font-size: 11px;
+            font-size: 13px;
             letter-spacing: 1px;
         """)
         self.count_label.setStyleSheet(f"""
             color: {theme.get_color("primary_dark")};
             font-family: 'Yu Gothic UI';
-            font-size: 32px;
+            font-size: 42px;
             font-weight: bold;
         """)
         # 黒テーマの場合は白色、それ以外は text_light を使用
@@ -437,13 +437,13 @@ class MainWindowUI(QWidget):
         self.label_time_title.setStyleSheet(f"""
             color: {time_title_color};
             font-family: 'Yu Gothic UI';
-            font-size: 11px;
+            font-size: 13px;
             letter-spacing: 1px;
         """)
         self.time_label.setStyleSheet(f"""
             color: {theme.get_color("primary")};
             font-family: 'Yu Gothic UI';
-            font-size: 26px;
+            font-size: 36px;
             font-weight: bold;
         """)
         self.drink_btn.setStyleSheet(f"""

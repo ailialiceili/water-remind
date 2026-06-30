@@ -14,7 +14,7 @@ REMIND_INTERVAL_SEC = DEFAULT_INTERVAL_MIN * 60
 POPUP_AUTO_CLOSE_SEC = 25          # 通知自動消去（秒）
 MAX_DRINK_COUNT = 8                # 満水とみなす回数
 WINDOW_WIDTH = 300
-WINDOW_HEIGHT = 440
+WINDOW_HEIGHT = 480
 ANIMATION_DURATION_MS = 500        # 水位アニメーション（ms）
 
 # ランダムメッセージ
