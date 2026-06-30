@@ -63,7 +63,7 @@ THEMES = {
         "cup_outline": "#88CCEE", "text": "#1A4A6B", "text_light": "#4A8AAA",
         "btn_bg": "#5BB8D4", "btn_hover": "#3A9EC2", "shadow": "#B0D8EC",
     },
-    "ピンク(ストロベリーフィズ)": {
+    "ピンク(ストロベリースムージー)": {
         "bg": "#FFF0F5", "bg2": "#FFD6E7",
         "primary": "#E87DA0", "primary_dark": "#B5476A",
         "accent": "#D45C85", "water_top": "#F7B8CF", "water_bot": "#D45C85",

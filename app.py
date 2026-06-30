@@ -170,6 +170,12 @@ class MainWindow(MainWindowUI):
     def _on_ignored(self):
         """ポップアップが無操作で閉じられた時：無視カウントを増やす"""
         self.ignore_count += 1
+        
+        # 3回目のポップアップ自動表示時に、飲んでいたら水位を減らす
+        if self.ignore_count == 2 and self.current_level > 0.0:
+            penalty = 0.2  # 20%の水位を減らす
+            self.current_level = max(self.current_level - penalty, 0.0)
+            self.cup_widget.set_level(self.current_level, animate=True)
 
     # ----------------------------------------------------------
     # ユーティリティ

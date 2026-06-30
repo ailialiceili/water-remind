@@ -158,7 +158,7 @@ class PopupWindow(QWidget):
         if self._snooze_count >= 2:
             # 最終警告状態：「閉じる」ボタンを表示
             close_btn = QPushButton("閉じる")
-            close_btn.setFixedHeight(28)
+            close_btn.setFixedHeight(36)
             close_btn.setCursor(Qt.CursorShape.PointingHandCursor)
             close_btn.setStyleSheet(f"""
                 QPushButton {{
@@ -167,8 +167,8 @@ class PopupWindow(QWidget):
                     font-family: 'Yu Gothic UI';
                     font-size: 16px;
                     border: 1px solid {theme.get_color("accent")};
-                    border-radius: 14px;
-                    padding: 0 10px;
+                    border-radius: 18px;
+                    padding: 0 20px;
                 }}
                 QPushButton:hover {{
                     background: {theme.get_color("bg2")};
@@ -324,3 +324,10 @@ class PopupWindow(QWidget):
         self._fade_timer.stop()
         self._glow_timer.stop()
         self._glow_active = False
+
+        
+    def closeEvent(self, event):
+        if not self._action_taken:
+            self.ignored_signal.emit()
+        super().closeEvent(event)
+
