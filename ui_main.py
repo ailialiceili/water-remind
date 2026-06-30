@@ -257,10 +257,12 @@ class MainWindowUI(QWidget):
         self.close_btn.setFixedSize(32, 32)
         self.close_btn.setCursor(Qt.CursorShape.PointingHandCursor)
         
+        # 黒テーマの場合は白色、それ以外は text_light を使用
+        close_btn_color = "#FFFFFF" if theme.current_name == "黒(ブラックコーヒー)" else theme.get_color("text_light")
         self.close_btn.setStyleSheet(f"""
             QPushButton {{
                 background: transparent;
-                color: {theme.get_color("text_light")};
+                color: {close_btn_color};
                 font-size: 16px;
                 font-weight: bold;
                 border: none;
@@ -291,8 +293,10 @@ class MainWindowUI(QWidget):
 
         self.label_title = QLabel("本日の飲水回数")
         self.label_title.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        # 黒テーマの場合は白色、それ以外は text_light を使用
+        title_color = "#FFFFFF" if theme.current_name == "黒(ブラックコーヒー)" else theme.get_color("text_light")
         self.label_title.setStyleSheet(f"""
-            color: {theme.get_color("text_light")};
+            color: {title_color};
             font-family: 'Yu Gothic UI';
             font-size: 11px;
             letter-spacing: 1px;
@@ -328,8 +332,10 @@ class MainWindowUI(QWidget):
 
         self.label_time_title = QLabel("次の通知まで")
         self.label_time_title.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        # 黒テーマの場合は白色、それ以外は text_light を使用
+        time_title_color = "#FFFFFF" if theme.current_name == "黒(ブラックコーヒー)" else theme.get_color("text_light")
         self.label_time_title.setStyleSheet(f"""
-            color: {theme.get_color("text_light")};
+            color: {time_title_color};
             font-family: 'Yu Gothic UI';
             font-size: 11px;
             letter-spacing: 1px;
@@ -397,10 +403,12 @@ class MainWindowUI(QWidget):
                 color: {theme.get_color("text")};
             }}
         """)
+        # 黒テーマの場合は白色、それ以外は text_light を使用
+        close_btn_color = "#FFFFFF" if theme.current_name == "黒(ブラックコーヒー)" else theme.get_color("text_light")
         self.close_btn.setStyleSheet(f"""
             QPushButton {{
                 background: transparent;
-                color: {theme.get_color("text_light")};
+                color: {close_btn_color};
                 font-size: 14px;
                 border: none;
                 border-radius: 14px;
@@ -410,8 +418,10 @@ class MainWindowUI(QWidget):
                 color: {theme.get_color("text")};
             }}
         """)
+        # 黒テーマの場合は白色、それ以外は text_light を使用
+        title_color = "#FFFFFF" if theme.current_name == "黒(ブラックコーヒー)" else theme.get_color("text_light")
         self.label_title.setStyleSheet(f"""
-            color: {theme.get_color("text_light")};
+            color: {title_color};
             font-family: 'Yu Gothic UI';
             font-size: 11px;
             letter-spacing: 1px;
@@ -422,8 +432,10 @@ class MainWindowUI(QWidget):
             font-size: 32px;
             font-weight: bold;
         """)
+        # 黒テーマの場合は白色、それ以外は text_light を使用
+        time_title_color = "#FFFFFF" if theme.current_name == "黒(ブラックコーヒー)" else theme.get_color("text_light")
         self.label_time_title.setStyleSheet(f"""
-            color: {theme.get_color("text_light")};
+            color: {time_title_color};
             font-family: 'Yu Gothic UI';
             font-size: 11px;
             letter-spacing: 1px;

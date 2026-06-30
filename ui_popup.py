@@ -120,7 +120,7 @@ class PopupWindow(QWidget):
             penalty_label.setStyleSheet(f"""
                 color: {theme.get_color("accent")};
                 font-family: 'Yu Gothic UI';
-                font-size:20px;
+                font-size:14px;
             """)
             layout.addWidget(penalty_label)
 

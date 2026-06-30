@@ -98,11 +98,11 @@ THEMES = {
         "cup_outline": "#B0BEC5", "text": "#263238", "text_light": "#607D8B",
         "btn_bg": "#90A4AE", "btn_hover": "#607D8B", "shadow": "#CFD8DC",
     },
-    "黒(ブラックコーヒー)": {
+    "黒(アイスコーヒー)": {
         "bg": "#1E1E2E", "bg2": "#181825",
         "primary": "#89B4FA", "primary_dark": "#74C7EC",
         "accent": "#89DCEB", "water_top": "#89B4FA", "water_bot": "#74C7EC",
-        "cup_outline": "#6C7086", "text": "#CDD6F4", "text_light": "#A6ADC8",
+        "cup_outline": "#6C7086", "text": "#111111", "text_light": "#333333",
         "btn_bg": "#89B4FA", "btn_hover": "#74C7EC", "shadow": "#313244",
     },
 }
